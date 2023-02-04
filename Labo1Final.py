@@ -1,11 +1,11 @@
 #Problème 1
 def info_eleve():
-    nom_eleve = "John Doe"
-    num_eleve = 123456
+    nom_eleve = "Alexandre Gagnon"
+    num_eleve = 3396648
 
     def menu_eleve():
-        print("[1] Votre nom")
-        print("[2] Votre numero etudiant")
+        print("1) Montrer cotre nom")
+        print("2) Montrer votre numero d'etudiant")
 
     menu_eleve()
     choix_eleve = int(input("Entrer votre choix: "))
@@ -14,7 +14,7 @@ def info_eleve():
     elif choix_eleve == 2:
         print(num_eleve)
     else:
-        print("Le choix est invalide")
+        print("Le choix est invalide, choisisez le chiffre 1 ou 2.")
 
 #Problème 2
 
@@ -84,3 +84,8 @@ def preference_utilisateur():
     print(f"Vous aurez l'opportunite de manger {plat_prefere}, lorsque vous visiterez {pays_prefere} en {annee_future}")
 
 info_eleve()
+nb_equation()
+nb_division()
+age_specific()
+mul_div()
+preference_utilisateur()
