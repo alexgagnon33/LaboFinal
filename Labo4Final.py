@@ -83,7 +83,7 @@ while True:
         print(f"Votre {type_compte[choix_utilisateur - 1]} compte a ${current_account[2]}")
     elif choix_utilisateur1 == 2:
         withdrawal_amount = int(input("Enter withdrawal amount: "))
-        if current_account[type_compte] - withdrawal_amount < 0:
+        if current_account[choix_utilisateur] - withdrawal_amount < 0:
             print(f"Insufficient funds in your {type_compte[choix_utilisateur - 1]} account.")
         else:
             current_account[choix_utilisateur] -= withdrawal_amount
