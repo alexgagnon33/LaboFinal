@@ -50,23 +50,22 @@ with open("bdx.txt", "r") as file:
                 decryptage_item.append(element)
         decryptage_database.append(decryptage_item)
 
-print("Database original:", database)
-print("Database décrypter:", decryptage_database)
-if database == decryptage_database:
-    print("La database a été encrypter et décrypter.")
-else:
-    print("Le décryptage n'a pas réussi, il n'est pas le même que la database original.")
+
 
 # Lire le fichier bdx.txt et décrypter les données
-with open("bdx.txt", "r") as file:
-  encrypted_database = file.readlines()
 decrypted_database = []
-for row in encrypted_database:
-    decrypted_row = decrypt(row)
-    decrypted_database.append(decrypted_row)
+with open("bdx.txt", "r") as file:
+    for line in file:
+        decrypted_database.append(decrypt(line))
 
-for row in decrypted_database:
-    print(row)
+print("Database original:", database)
+print("Database décrypter:", decryptage_database)
+
+if database == decryptage_database:
+    print("La database a été encrypter et décrypter.")
+    
+else:
+    print("Le décryptage n'a pas réussi, il n'est pas le même que la database original.")
 
 while True:
     account_num = input("Enter your account number (4 digits): ")
