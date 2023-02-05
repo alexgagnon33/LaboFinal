@@ -27,7 +27,7 @@ for item in database:
             encryptage_item.append(encryptage_element)
         else:
             encryptage_item.append(element)
-            encryptage_database.append(encryptage_item)
+    encryptage_database.append(encryptage_item)
 
 with open("bdx.txt", "w") as file:
     for item in encryptage_database:
@@ -46,52 +46,56 @@ for item in encryptage_database:
                 Décryptage_item.append(Décryptage_element)
         else:
             Décryptage_item.append(element)
-            Décryptage_database.append(Décryptage_item)
+    Décryptage_database.append(Décryptage_item)
 
 print("Database original:", database)
 print("Database décrypter:", Décryptage_database)
-
+if database == Décryptage_database:
+    print("La database a été encrypter et décrypter.")
+else:
+    print("Le décryptage n'a pas réussi, il n'est pas le même que la database original.")
 # Step 2: Choose Account
-print("Choose an account:")
-print("1. Cheque")
-print("2. Savings")
-print("3. Investments")
+print("Choisir un compte suivant:")
+print("1) Cheque")
+print("2) Épargne")
+print("3) Placement")
 
-account_choice = int(input("Enter 1, 2, or 3: "))
-account_types = ["Cheque", "Savings", "Investments"]
+choix_utilisateur = int(input("Entrer un choix des comptes: "))
+type_compte = ["Cheque", "Épargne", "Placement"]
 
 # Step 3: Choose Operation
 while True:
-    print("Choose an operation:")
-    print("1. Make a deposit")
-    print("2. Make a withdrawal")
-    if account_choice == 3:
-        print("3. View Investment Return")
-    print("4. Terminate")
+    print("Choisir une action à faire:")
+    print("1) Faire un dépot")
+    print("2) Faire un retrait")
+    if choix_utilisateur == 3:
+        print("3) Voir le retour d'investissement")
+    print("4) Fermer le compte")
     
-    operation = int(input("Enter 1, 2, 3, or 4: "))
+    choix_utilisateur1 = int(input("Entrer un choix des actions à faire: "))
     
-    if operation == 1:
-        deposit_amount = int(input("Enter deposit amount: "))
-        current_account[account_choice] += deposit_amount
-        print(f"Your {account_types[account_choice - 1]} account now has a balance of ${current_account[account_choice]}")
-    elif operation == 2:
+    if choix_utilisateur1 == 1:
+        deposit_amount = int(input("Entrer un dépot à mettre: "))
+        current_account = database[type_compte - 1]
+        current_account[2] += deposit_amount
+        print(f"Votre {type_compte[type_compte - 1]} compte a ${current_account[2]}")
+    elif choix_utilisateur1 == 2:
         withdrawal_amount = int(input("Enter withdrawal amount: "))
-        if current_account[account_choice] - withdrawal_amount < 0:
-            print(f"Insufficient funds in your {account_types[account_choice - 1]} account.")
+        if current_account[type_compte] - withdrawal_amount < 0:
+            print(f"Insufficient funds in your {type_compte[choix_utilisateur - 1]} account.")
         else:
-            current_account[account_choice] -= withdrawal_amount
-            print(f"Your {account_types[account_choice - 1]} account now has a balance of ${current_account[account_choice]}")
-    elif operation == 3 and account_choice == 3:
-        print(f"Your Investment account balance is ${current_account[account_choice]}")
+            current_account[choix_utilisateur] -= withdrawal_amount
+            print(f"Your {type_compte[choix_utilisateur - 1]} account now has a balance of ${current_account[choix_utilisateur]}")
+    elif choix_utilisateur1 == 3 and choix_utilisateur == 3:
+        print(f"Your Investment account balance is ${current_account[choix_utilisateur]}")
         interest_rate = current_account[5] / 100
         print(f"Your interest rate is {interest_rate}")
         print("Projected investment return in 5 years:")
         for i in range(1, 6):
-            interest = current_account[account_choice] * interest_rate
-            current_account[account_choice] += interest
-            print(f"{i} year: ${current_account[account_choice]}")
-    elif operation == 4:
+            interest = current_account[choix_utilisateur] * interest_rate
+            current_account[choix_utilisateur] += interest
+            print(f"{i} year: ${current_account[choix_utilisateur]}")
+    elif choix_utilisateur1 == 4:
         break
     else:
         print("Invalid choice. Please try again.")
@@ -99,37 +103,37 @@ while True:
 # Step 7: Admin Menu
 if account_num == "0000" and password == "admin":
     while True:
-        print("Admin Menu:")
-        print("1. View all accounts")
-        print("2. Add a new account")
-        print("3. Delete an account")
-        print("4. Logout")
+        print("Menu admin:")
+        print("1. Voir tous les comptes")
+        print("2. Ajouter un compte")
+        print("3. Effacer un compte")
+        print("4. Quiiter le terminal")
 
-        admin_choice = int(input("Enter 1, 2, 3, or 4: "))
+        admin_choix = int(input("Entrer une action à faire: "))
 
-        if admin_choice == 1:
+        if admin_choix == 1:
             for account in database:
                 print(account)
-        elif admin_choice == 2:
-            new_account_num = input("Enter new account number: ")
-            new_password = input("Enter password: ")
-            new_cheque = int(input("Enter cheque account balance: "))
-            new_savings = int(input("Enter savings account balance: "))
-            new_investments = int(input("Enter investments account balance: "))
-            new_interest = float(input("Enter interest rate: "))
-            new_account = [new_account_num, new_password, new_cheque, new_savings, new_investments, new_interest]
-            database.append(new_account)
-            print("New account added.")
-        elif admin_choice == 3:
-            delete_account_num = input("Enter account number to delete: ")
+        elif admin_choix == 2:
+            n_compte_num = input("Entrer un numéro de compte: ")
+            n_password = input("Entrer un mot de passe: ")
+            n_cheque = int(input("Saisir le solde du compte chèque: "))
+            n_epargne = int(input("Saisir le solde du compte d'épargne: "))
+            n_investissement = int(input("Saisissez le solde du compte de placement: "))
+            n_interet = float(input("Entrez le taux d'intérêt: "))
+            n_compte = [n_compte_num, n_password, n_cheque, n_epargne, n_investissement, n_interet]
+            database.append(n_compte)
+            print("Nouveau compte ajouté")
+        elif admin_choix == 3:
+            effacer_compte_num = input("Entrer le num du compte à effacer: ")
             for account in database:
-                if account[0] == delete_account_num:
+                if account[0] == effacer_compte_num:
                     database.remove(account)
-                    print("Account deleted.")
+                    print("Compte effacer")
                     break
             else:
-                print("Account not found.")
-        elif admin_choice == 4:
+                print("Compte inexistant")
+        elif admin_choix == 4:
             break
         else:
-            print("Invalid choice. Please try again.")
+            print("Choix invalide,. réessayer.")
