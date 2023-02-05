@@ -75,32 +75,35 @@ while True:
     print("4) Fermer le compte")
     
     choix_utilisateur1 = int(input("Entrer un choix des actions à faire: "))
-    
+    current_account = database[choix_utilisateur - 1] 
+
     if choix_utilisateur1 == 1:
         deposit_amount = int(input("Entrer un dépot à mettre: "))
-        current_account = database[choix_utilisateur - 1] 
         current_account[2] += deposit_amount
         print(f"Votre {type_compte[choix_utilisateur - 1]} compte a ${current_account[2]}")
+
     elif choix_utilisateur1 == 2:
-        withdrawal_amount = int(input("Enter withdrawal amount: "))
-        if current_account[choix_utilisateur] - withdrawal_amount < 0:
-            print(f"Insufficient funds in your {type_compte[choix_utilisateur - 1]} account.")
+        withdrawal_amount = int(input("Entrer le retrait à faire: "))
+        if current_account[2] - withdrawal_amount < 0:
+            print(f"Pas asser d'argent dans le compte{type_compte[choix_utilisateur - 1]}.")
         else:
-            current_account[choix_utilisateur] -= withdrawal_amount
-            print(f"Your {type_compte[choix_utilisateur - 1]} account now has a balance of ${current_account[choix_utilisateur]}")
+            current_account[2] -= withdrawal_amount
+            print(f"Votre {type_compte[choix_utilisateur - 1]} compte a ${current_account[2]}")
+
     elif choix_utilisateur1 == 3 and choix_utilisateur == 3:
-        print(f"Your Investment account balance is ${current_account[choix_utilisateur]}")
+        print(f"Votre investissement est ${current_account[choix_utilisateur]}")
         interest_rate = current_account[5] / 100
-        print(f"Your interest rate is {interest_rate}")
-        print("Projected investment return in 5 years:")
+        print(f"Votre interet est {interest_rate}")
+        print("La projection du placement pour les prochains 5 ans est: ")
         for i in range(1, 6):
             interest = current_account[choix_utilisateur] * interest_rate
             current_account[choix_utilisateur] += interest
-            print(f"{i} year: ${current_account[choix_utilisateur]}")
+            print(f"{i} ans: ${current_account[choix_utilisateur]}")
+
     elif choix_utilisateur1 == 4:
         break
     else:
-        print("Invalid choice. Please try again.")
+        print("Choix invalide, réessayer.")
         
 # Step 7: Admin Menu
 if account_num == "0000" and password == "admin":
