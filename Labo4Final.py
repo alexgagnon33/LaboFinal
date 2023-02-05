@@ -18,16 +18,16 @@ random.shuffle(Random_Base)
 encryptage_database = []
 for item in database:
     encryptage_item = []
-for element in item:
-    if isinstance(element, str):
-        encryptage_element = ""
-for letter in element:
-    index = Base.index(letter)
-    encryptage_element += Random_Base[index]
-    encryptage_item.append(encryptage_element)
-else:
-    encryptage_item.append(element)
-    encryptage_database.append(encryptage_item)
+    for element in item:
+        if isinstance(element, str):
+            encryptage_element = ""
+            for letter in element:
+                index = Base.index(letter)
+                encryptage_element += Random_Base[index]
+            encryptage_item.append(encryptage_element)
+        else:
+            encryptage_item.append(element)
+            encryptage_database.append(encryptage_item)
 
 with open("bdx.txt", "w") as file:
     for item in encryptage_database:
