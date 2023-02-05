@@ -60,15 +60,15 @@ else:
     print("Le décryptage n'a pas réussi, il n'est pas le même que la database original.")
 
 while True:
-    account_num = input("Enter your account number (4 digits): ")
-    password = input("Enter your password: ")
+    account_num = input("Entrer votre numero de compte: ")
+    password = input("Entrer votre mot de passe: ")
 
     for account in database:
         if account[0] == account_num and account[1] == password:
             current_account = account
             break
     else:
-        print("Incorrect account number or password. Please try again.")
+        print("Le mot de passe ou votre numero de compte est erroner, réessayer.")
         continue
 
     if account_num == "0000" and password == "admin":
