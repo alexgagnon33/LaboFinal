@@ -56,6 +56,31 @@ if database == decryptage_database:
     print("La database a été encrypter et décrypter.")
 else:
     print("Le décryptage n'a pas réussi, il n'est pas le même que la database original.")
+
+# Lire le fichier bdx.txt et décrypter les données
+with open("bdx.txt", "r") as file:
+  encrypted_database = file.readlines()
+decrypted_database = []
+for row in encrypted_database:
+    decrypted_row = decrypt(row)
+    decrypted_database.append(decrypted_row)
+
+for row in decrypted_database:
+    print(row)
+
+while True:
+    account_num = input("Enter your account number (4 digits): ")
+    password = input("Enter your password: ")
+
+    for account in database:
+        if account[0] == account_num and account[1] == password:
+            current_account = account
+            break
+    else:
+        print("Incorrect account number or password. Please try again.")
+        continue
+
+    break
 # Step 2: Choose Account
 print("Choisir un compte suivant:")
 print("1) Cheque")
