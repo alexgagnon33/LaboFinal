@@ -21,8 +21,8 @@ for item in database:
 for element in item:
     if isinstance(element, str):
         encryptage_element = ""
-for letter in element:
-    index = Lettre.index(letter)
+for Lettre in element:
+    index = Lettre.index(Lettre)
     encryptage_element += F_Lettre[index]
     encryptage_item.append(encryptage_element)
 else:
