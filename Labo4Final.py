@@ -78,7 +78,7 @@ while True:
     
     if choix_utilisateur1 == 1:
         deposit_amount = int(input("Entrer un dépot à mettre: "))
-        current_account = database[type_compte - 1] 
+        current_account = database[choix_utilisateur - 1] 
         current_account[2] += deposit_amount
         print(f"Votre {type_compte[type_compte - 1]} compte a ${current_account[2]}")
     elif choix_utilisateur1 == 2:
