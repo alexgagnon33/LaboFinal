@@ -8,10 +8,10 @@ database = [["1234", "voiture1", 100, 1000, 10000, 1.8],
             ["0000", "admin", 0, 0, 0, 0]]
 
 
-Lettre = " " + string.punctuation + string.digits + string.ascii_letters
-Lettre = (list(Lettre))
-F_Lettre = Lettre.copy()
-random.shuffle(F_Lettre)
+Base = " " + string.punctuation + string.digits + string.ascii_letters
+Base = (list(Base))
+Random_Base = Base.copy()
+random.shuffle(Random_Base)
 
 #Encryptage
 #https://www.youtube.com/watch?v=vsLBErLWBhA&ab_channel=BroCode pour avoir une base https://www.geeksforgeeks.org/how-to-encrypt-and-decrypt-strings-in-python/
@@ -21,9 +21,9 @@ for item in database:
 for element in item:
     if isinstance(element, str):
         encryptage_element = ""
-for Lettre in element:
-    index = Lettre.index(Lettre)
-    encryptage_element += F_Lettre[index]
+for letter in element:
+    index = Base.index(letter)
+    encryptage_element += Random_Base[index]
     encryptage_item.append(encryptage_element)
 else:
     encryptage_item.append(element)
@@ -37,23 +37,19 @@ with open("bdx.txt", "w") as file:
 Décryptage_database = []
 for item in encryptage_database:
     Décryptage_item = []
-for element in item:
-    if isinstance(element, str):
-        Décryptage_element = ""
-for letter in element:
-    index = F_Lettre.index(letter)
-    Décryptage_element += Lettre[index]
-    Décryptage_item.append(Décryptage_element)
-else:
-    Décryptage_item.append(element)
-    Décryptage_database.append(Décryptage_item)
+    for element in item:
+        if isinstance(element, str):
+            Décryptage_element = ""
+            for letter in element:
+                index = Random_Base.index(letter)
+                Décryptage_element += Base[index]
+                Décryptage_item.append(Décryptage_element)
+        else:
+            Décryptage_item.append(element)
+            Décryptage_database.append(Décryptage_item)
 
 print("Database original:", database)
 print("Database décrypter:", Décryptage_database)
-if database == Décryptage_database:
-    print("La database a été encrypter et décrypté")
-else:
-    print("The decrypted database is not the same as the original database")
 
 # Step 2: Choose Account
 print("Choose an account:")
