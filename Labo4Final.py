@@ -34,23 +34,25 @@ with open("bdx.txt", "w") as file:
         file.write(str(item) + "\n")
 
 #Décryptage
-Décryptage_database = []
-for item in encryptage_database:
-    Décryptage_item = []
-    for element in item:
-        if isinstance(element, str):
-            Décryptage_element = ""
-            for letter in element:
-                index = Random_Base.index(letter)
-                Décryptage_element += Base[index]
-                Décryptage_item.append(Décryptage_element)
-        else:
-            Décryptage_item.append(element)
-    Décryptage_database.append(Décryptage_item)
+decryptage_database = []
+with open("bdx.txt", "r") as file:
+    for line in file:
+        decryptage_item = []
+        item = eval(line)
+        for element in item:
+            if isinstance(element, str):
+                Décryptage_element = ""
+                for letter in element:
+                    index = Random_Base.index(letter)
+                    Décryptage_element += Base[index]
+                decryptage_item.append(Décryptage_element)
+            else:
+                decryptage_item.append(element)
+        decryptage_database.append(decryptage_item)
 
 print("Database original:", database)
-print("Database décrypter:", Décryptage_database)
-if database == Décryptage_database:
+print("Database décrypter:", decryptage_database)
+if database == decryptage_database:
     print("La database a été encrypter et décrypter.")
 else:
     print("Le décryptage n'a pas réussi, il n'est pas le même que la database original.")
