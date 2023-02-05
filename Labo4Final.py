@@ -48,10 +48,10 @@ else:
     Décryptage_item.append(element)
     Décryptage_database.append(Décryptage_item)
 
-print("Original database:", database)
-print("Decrypted database:", Décryptage_database)
+print("Database original:", database)
+print("Database décrypter:", Décryptage_database)
 if database == Décryptage_database:
-    print("The database was successfully encrypted and decrypted")
+    print("La database a été encrypter et décrypté")
 else:
     print("The decrypted database is not the same as the original database")
 
